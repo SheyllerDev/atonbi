@@ -54,7 +54,7 @@ function initTheme() {
 /* --- 3. LÓGICA DEL DASHBOARD --- */
 const reports = {
     efectividad: { title: "Efectividad BO", url: "https://app.powerbi.com/view?r=eyJrIjoiZDkxYTFiNDctNDFjYS00NThjLWExYjgtMzQ5M2Y0NzZjZGUzIiwidCI6ImM5YTUyNjg2LTFhYzMtNDBlZi05Yzk3LWEyZWYyOWIyOTdmYyIsImMiOjR9" },
-    matriz: { title: "Matriz General", url: "https://app.powerbi.com/view?r=eyJrIjoiNjIyYmJjNzQtYjI4My00MjdkLWE0ZmUtNWJkNjhiN2E0NmIyIiwidCI6ImM5YTUyNjg2LTFhYzMtNDBlZi05Yzk3LWEyZWYyOWIyOTdmYyIsImMiOjR9" },
+    matriz: { title: "Matriz General", url: "https://app.powerbi.com/view?r=eyJrIjoiNjQzYzRjYjUtMmU4Zi00YzRmLThiYTItYWQ1MzZmNDgzOWNlIiwidCI6ImM5YTUyNjg2LTFhYzMtNDBlZi05Yzk3LWEyZWYyOWIyOTdmYyIsImMiOjR9" },
     calidad: { title: "Reporte de Calidad", url: "https://app.powerbi.com/view?r=eyJrIjoiNzhmYWM2OWMtZmJlMy00ZjgxLTgwYmMtNTcyNDcwNWYyMmM0IiwidCI6ImM5YTUyNjg2LTFhYzMtNDBlZi05Yzk3LWEyZWYyOWIyOTdmYyIsImMiOjR9" }
 };
 
@@ -139,4 +139,5 @@ window.addEventListener('resize', () => {
     } else {
         sidebar.classList.add('-translate-x-full'); sidebar.classList.remove('w-0'); sidebar.classList.add('w-64');
     }
+
 });
