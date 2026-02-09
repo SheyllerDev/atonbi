@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portal Netcall</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="min-h-screen flex items-center justify-center relative selection:bg-blue-400 selection:text-white" oncontextmenu="return false;">
+
+    <canvas id="lightningCanvas"></canvas>
+
+    <div class="glass-card w-full max-w-[400px] p-8 rounded-3xl z-10 mx-4 relative fade-in">
+        
+        <div class="text-center mb-8">
+            <img 
+                src="https://cdn.brandfetch.io/idTV_KrvVn/w/154/h/43/theme/light/logo.png?c=1bxid64Mup7aczewSAYMX&t=1765756451861" 
+                alt="Netcall Peru" 
+                class="w-32 h-auto mx-auto mb-6 object-contain"
+            >
+            
+            <div class="flex flex-col items-center justify-center leading-tight">
+                <span class="text-xl font-medium text-blue-200/80 mb-1 tracking-wide">Bienvenidos al Portal</span>
+                <span class="text-3xl font-extrabold text-white glow-text tracking-tight uppercase bg-clip-text bg-gradient-to-b from-white to-blue-100">
+                    ATON BI
+                </span>
+            </div>
+            
+            <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-3 border-t border-white/10 pt-3 inline-block w-full">
+                sistema de business intelligence
+            </p>
+        </div>
+
+        <form id="loginForm" class="space-y-5" novalidate>
+            <div class="input-group">
+                <input type="email" id="email" class="input-field w-full px-4 py-3.5 rounded-xl bg-transparent outline-none text-white text-sm" placeholder=" " required>
+                <label for="email" class="input-label">Usuario / Correo</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" class="input-field w-full px-4 py-3.5 rounded-xl bg-transparent outline-none text-white text-sm" placeholder=" " required>
+                <label for="password" class="input-label">Contraseña</label>
+                <button type="button" id="togglePassword" class="absolute right-4 top-3.5 text-slate-500 hover:text-blue-300 transition-colors">
+                    <i class="ph ph-eye text-lg"></i>
+                </button>
+            </div>
+
+            <div class="flex items-center justify-between text-xs font-medium">
+                <label class="flex items-center text-slate-400 cursor-pointer hover:text-slate-200 gap-2">
+                    <input type="checkbox" class="custom-checkbox">
+                    <span>Mantener sesión</span>
+                </label>
+                <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors hover:underline">Recuperar</a>
+            </div>
+
+            <button type="submit" class="btn-lightning w-full py-3.5 rounded-xl text-white font-bold shadow-lg flex items-center justify-center gap-2 mt-4 text-sm tracking-wide">
+                INGRESAR AL SISTEMA
+            </button>
+        </form>
+    </div>
+
+    <script src="js/login.js"></script>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
+        }
+    </script>
+</body>
+</html>

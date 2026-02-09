@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard General - Netcall Peru</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="h-screen overflow-hidden flex">
+
+    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden" onclick="closeMobileSidebar()"></div>
+
+    <aside id="sidebar" class="bg-brand-sidebar text-white w-64 flex-shrink-0 fixed inset-y-0 left-0 transform -translate-x-full lg:relative lg:translate-x-0 z-30 flex flex-col h-full shadow-xl overflow-hidden border-r border-gray-700 transition-all duration-300">
+        
+        <div class="h-16 flex items-center justify-between px-4 border-b border-gray-700 bg-brand-primary min-w-[16rem]">
+            <div class="flex items-center pl-2">
+                <img 
+                    src="https://cdn.brandfetch.io/idTV_KrvVn/w/154/h/43/theme/light/logo.png?c=1bxid64Mup7aczewSAYMX&t=1765756451861" 
+                    alt="Netcall" 
+                    class="h-7 w-auto object-contain"
+                >
+            </div>
+            <button onclick="toggleDesktopSidebar()" class="hidden lg:block text-gray-400 hover:text-white p-1 rounded hover:bg-gray-800" title="Ocultar Menú">
+                <i data-lucide="chevrons-left" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="p-6 border-b border-gray-700 min-w-[16rem]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-sm font-bold shadow-lg text-white">AD</div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-100">Admin User</p>
+                    <p class="text-xs text-gray-400">Gerente de Ops</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4 min-w-[16rem]">
+            <ul class="space-y-1 px-3">
+                <li><p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Informes Principales</p></li>
+                <li>
+                    <button onclick="loadReport('efectividad')" id="btn-efectividad" class="nav-item w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg bg-brand-accent text-white shadow-md border border-brand-accent transition-all duration-200">
+                        📈 Efectividad BO
+                    </button>
+                </li>
+                <li>
+                    <button onclick="loadReport('matriz')" id="btn-matriz" class="nav-item w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                        Matriz General
+                    </button>
+                </li>
+                <li>
+                    <button onclick="loadReport('calidad')" id="btn-calidad" class="nav-item w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                        Calidad
+                    </button>
+                </li>
+            </ul>
+
+            <ul class="space-y-1 px-3 mt-8">
+                <li><p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Sistema</p></li>
+                <li><a href="#" class="flex items-center px-3 py-2 text-sm font-medium rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors">Configuración</a></li>
+                <li><a href="#" class="flex items-center px-3 py-2 text-sm font-medium rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors">Ayuda y Soporte</a></li>
+            </ul>
+        </nav>
+
+        <div class="p-4 border-t border-gray-700 min-w-[16rem]">
+            <button onclick="cerrarSesion()" class="flex items-center w-full px-3 py-2 text-sm font-medium text-red-400 hover:bg-gray-800 hover:text-red-300 rounded-lg transition-colors group">
+                <i data-lucide="log-out" class="w-5 h-5 mr-2 transition-transform group-hover:-translate-x-1"></i>
+                Cerrar Sesión
+            </button>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col h-full overflow-hidden"> 
+        
+        <header class="theme-bg-card border-b theme-border h-16 flex items-center justify-between px-4 lg:px-8 z-10 shadow-sm flex-shrink-0 transition-colors duration-300">
+            <div class="flex items-center">
+                <button onclick="handleMenuClick()" class="p-2 rounded-md theme-text-muted hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none mr-3 transition-colors" title="Alternar Menú">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                
+                <h1 id="page-title" class="text-xl font-bold theme-text-main">Dashboard General</h1>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleTheme()" class="p-2 rounded-full theme-text-muted hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Cambiar Tema">
+                    <i id="icon-sun" data-lucide="sun" class="w-5 h-5 hidden"></i>
+                    <i id="icon-moon" data-lucide="moon" class="w-5 h-5"></i>
+                </button>
+
+                <div class="h-6 w-px bg-gray-300 mx-2"></div>
+
+                <button onclick="refreshFrame()" class="hidden md:flex items-center text-sm theme-text-muted bg-gray-50 hover:bg-gray-100 hover:text-brand-accent border theme-border px-3 py-1.5 rounded-full transition-all duration-200 group">
+                    Actualizar
+                </button>
+
+                <button class="p-2 rounded-full theme-text-muted hover:bg-gray-100 relative">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 px-4 lg:px-8 py-6 overflow-hidden flex flex-col relative">
+            <div class="theme-bg-card rounded-xl shadow-md border theme-border flex-1 relative overflow-hidden flex flex-col transition-colors duration-300">
+                <div id="loader" class="absolute inset-0 flex flex-col items-center justify-center theme-bg-card z-10">
+                    <div class="loader mb-4"></div>
+                    <p class="theme-text-muted font-medium animate-pulse text-sm">Conectando...</p>
+                </div>
+                <iframe id="powerbi-frame" class="w-full h-full border-none" src="" allowFullScreen="true"></iframe>
+            </div>
+            <div class="mt-2 flex justify-between px-2">
+                <p class="text-[10px] theme-text-muted">Conexión Segura v4.1</p>
+                <p class="text-[10px] theme-text-muted">Netcall Peru</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

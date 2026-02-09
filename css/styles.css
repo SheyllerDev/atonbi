@@ -1,0 +1,57 @@
+/* --- CONFIGURACIÓN DE COLORES Y TEMAS --- */
+:root {
+    /* COLORES FIJOS (Marca) */
+    --sidebar-bg: #0E2E67; 
+    --brand-primary: #0E2E67; 
+    --brand-accent: #E64A00;  
+    --brand-accent-hover: #cc4100;
+
+    /* TEMA CLARO (Por defecto) */
+    --bg-main: #f8fafc;       /* Fondo general */
+    --bg-card: #ffffff;       /* Fondo de tarjetas */
+    --text-main: #1f2937;     /* Texto principal */
+    --text-muted: #6b7280;    /* Texto secundario */
+    --border-color: #e5e7eb;  /* Bordes */
+}
+
+/* TEMA OSCURO (Se activa con JS) */
+body.dark-mode {
+    --bg-main: #0f172a;       /* Slate 900 (Fondo oscuro profundo) */
+    --bg-card: #1e293b;       /* Slate 800 (Tarjetas gris azulado) */
+    --text-main: #f1f5f9;     /* Texto blanco suave */
+    --text-muted: #94a3b8;    /* Texto secundario claro */
+    --border-color: #334155;  /* Bordes oscuros */
+}
+
+/* --- APLICACIÓN DE VARIABLES --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Clases de utilidad vinculadas a variables */
+.bg-brand-primary { background-color: var(--brand-primary); }
+.bg-brand-sidebar { background-color: var(--sidebar-bg); }
+.bg-brand-accent { background-color: var(--brand-accent); }
+.text-brand-accent { color: var(--brand-accent); }
+.border-brand-accent { border-color: var(--brand-accent); }
+
+/* Sobreescribimos clases de Tailwind con nuestras variables para el tema */
+.theme-bg-card { background-color: var(--bg-card); }
+.theme-border { border-color: var(--border-color); }
+.theme-text-main { color: var(--text-main); }
+.theme-text-muted { color: var(--text-muted); }
+
+.hover-bg-brand-accent:hover { background-color: var(--brand-accent); filter: brightness(110%); }
+
+/* --- LOADER --- */
+.loader {
+    border: 4px solid var(--border-color); 
+    border-top: 4px solid var(--brand-accent);
+    border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+#sidebar { transition: width 0.3s ease, transform 0.3s ease; }
